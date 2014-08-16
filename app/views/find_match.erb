@@ -1,0 +1,41 @@
+<center><a href="/profile">Back to my profile</a>
+
+<%if get_current_user %>
+<form action="/logout" method="post">
+  <input type="submit" value="Logout">
+
+</form>
+<% end %>
+
+<div id = "show_match">
+<% z = @matches %>
+<% x = z.sample %>
+<p>You matched with:</p><h2><%= x.username %></h2></strong></h2><br>
+<img src= "<%=@current_user.img%>" width="200" height="200" >    <img src= "<%= x.img %>" width="200" height="200"  />
+<p> Your match is <h2><%= x.age %></h2> years old.</p>
+<p> As you specified, the user is <h2><%= x.gender %></strong></h2>
+<p>This is how they described themselves:<h2> "<%= x.bio %>" </strong></h2>
+<br>
+</div>
+
+<div id = "show_date">
+<p> Your date is</p>
+<h2><% date =["Tomorrow at 5pm!", "Tomorrow at 6pm!", "Tomorrow at 7pm!", "Tomorrow at 8pm!"] %>
+<%= date[ rand(4) ] %></h2>
+<p>at</p>
+
+<h2><%= @random_date %></h2>
+
+<p> and </p>
+<h2><% pays = ["You're paying!", "You're splitting it 50/50", "You don't have to pay a dime :)"] %>
+<%= pays[ rand(3) ] %></h2>
+
+</div>
+
+<form action="" method="">
+<input type="submit" value="Confirm">
+<form action="" method="">
+<input type="submit" value="Find me a new one!">
+
+<br><br>
+</center>

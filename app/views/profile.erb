@@ -1,0 +1,85 @@
+<center>
+<body>
+<a href="/">Back to Login Page</a>
+<%if get_current_user %>
+<form action="/logout" method="post">
+  <input type="submit" value="Logout">
+</form>
+<% end %>
+<% if get_current_user %>
+
+  <h2> Welcome, <%= @current_user.username.capitalize %>!</h2>
+<%else%> 
+<h2><a href="/signup">Please sign in!</h2>
+<%end%>
+
+<p>Here is your profile picture being displayed to other users: </p>
+<img src= "<%= @current_user.img %>" max-width=25% >
+<br>
+<p>This is how you describe yourself:<br><br>"<%= @current_user.bio %>"</p>
+
+<h2> Date preferences</h2>
+
+<p>For your ideal match, please specify your preferences below.</p>
+
+<form action="/profile" method="post">
+  <div class="form">
+      <div>
+      <div>
+        <h3>Minimum age</h3>
+        <select name="min_age" value="" required>
+        <option value="nil" selected disabled>Select an age</option>
+        <%  $i = 18 %>
+        <% $num = 99 %>
+        <% while $i < $num  do %>
+        <option value="<%= $i %>"><%= $i %></option>
+        <%  $i +=1%>
+        <% end %>
+        </select>
+      </div>
+      <h3>Maximum age</h3>
+        <select name="max_age" value="" required>
+        <option value="nil" selected disabled>Select an age</option>
+        <%  $i = 18 %>
+        <% $num = 99 %>
+        <% while $i < $num  do %>
+        <option value="<%= $i %>"><%= $i %></option>
+        <%  $i +=1%>
+        <% end %>
+        </select>
+      </div>
+      <div>
+        <h3>Choose your gender preference:</h3>
+        <select name="gender_pref" value="" required>
+        <option value="nil" selected disabled>Select an option</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        </select>
+      </div>
+      <div>
+        <h3>Where would you like to go on your date?</h3>
+        <select name="activity_type_id" value="" required>
+        <option value="nil" selected disabled>Select an option</option>
+        <option value="1">Coffee</option>
+        <option value="2">Outdoor Activity</option>
+        <option value="3">Restaurant</option>
+        <option value="4">Drinks</option>
+        </select>
+      </div>
+      <br><br>
+    </div>
+    <% if get_current_user.preference.nil? %>
+    <input type="submit" value="Save Preferences">
+    <% else %>
+    <input type="submit" value="Update Preferences">
+    <% end %>
+
+</form>
+<br><br>
+Are you ready?
+<%if get_current_user %>
+<form action="/find_match" method="get">
+  <input type="submit" value="Yes! Find me a date!">
+</form>
+<% end %>
+</body>

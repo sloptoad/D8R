@@ -1,0 +1,21 @@
+<center><h1>Login Below</h1>
+
+<form action="/login" method="post">
+    <div class="login">
+      <div>
+        <label>Username:</label>
+        <input type="text" name="username" value="<%= params[:username] %>" required>
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" value="" required>
+      </div>  
+      <div>
+      <input type="submit" value="Login">
+      </div>
+    </div>
+  </div>
+</form>
+<div><% if @login_failed  %>Invalid login, please try again.<%end%></div>
+
+<a href="/">Reload Homepage</a></center>

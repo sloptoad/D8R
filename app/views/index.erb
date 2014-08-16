@@ -1,0 +1,66 @@
+<div class="background_img">
+
+<div class="index_panel">
+
+  <center><h1>D8r</h1>
+    <h2>Dating just got less awkward.</h2>
+        <!-- Collection of nav links and other content for toggling -->
+      <br>
+
+
+    <%if get_current_user.nil? %>
+    <div class = "login">
+      <form action="/" method="post">
+        <div class="form">
+          <div>
+            <label>Username:</label>
+            <input class="input_boxes" type="text" name="username" value="<%= @user && @user.username %>"required >
+          </div>
+          <div>
+            <label>Password:</label>
+            <input class="input_boxes" type="password" name="password" value="<%= @user && @user.password %>"required >
+          </div>
+           <div>
+            <label>Avatar URL:</label>
+            <input class="input_boxes" type="url" name="img" value="<%= @user && @user.img %>" required >
+          </div>
+          <div>
+            <label>Age:</label>
+            <input class="input_boxes" type="text" name="age" value="<%= @user && @user.age %>" required>
+          </div>
+           <div>
+           <label>Gender:</label>
+            <select name="gender" value="<%= @user && @user.gender %>" required>
+            <option value="nil" selected disabled>Select an option</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select>
+            <br>
+          </div>
+          <div><br>
+            <label>Say a little about yourself:</label><br>
+            <input class="input_boxes" type="text" name="bio" value="<%= @user && @user.bio %>">
+          </div>
+          <br>
+          <div>
+          <input class="input_boxes" type="submit" value="Sign Me Up!">
+          </div>
+      </form>
+    </div>
+    <br>
+    <br>
+     <p>Already have a profile? <strong><a href="/login">Login</strong></a><br></p>
+    <%end%>
+
+    <%if get_current_user %>
+    <p>Looks like you're already signed in!</p>
+    <a href="/profile">Profile</a><br>
+      
+    <form action="/pieces/logout" method="post">
+    <input type="submit" value="Logout">
+    </form>
+    <% end %>
+
+    </center>
+  </div>
+</div>
